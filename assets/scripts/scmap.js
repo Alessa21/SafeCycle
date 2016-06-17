@@ -42,13 +42,14 @@ var map = (function(){
 				}
 				
 			//DEBUG - function should fire on tap of menu item rather than tapping on map
-			map.addListener("click", function(e){
-				addMarkerOnClick();
-			});
+			// map.addListener("click", function(e){
+				// addMarkerOnClick();
+			// });
 		}
 			
-		function accidentMarker(color){
-			var content = "<div class='marker-div'><img src='assets/images/sc-" + color +".png'></img><div class='icon-div'></div></div>";
+		// Fill in template with marker-specific info and return content
+		function accidentMarker(color, type){
+			var content = "<div class='marker-div'><img src='assets/images/sc-" + color +".png' /><div class='icon-div'><img src='assets/images/" + type + ".png' /></div></div>";
 			return content;
 		}
 			
@@ -61,7 +62,7 @@ var map = (function(){
 					//console.log(marker); 	//DEBUG
 					var latLng = new google.maps.LatLng(marker.lastLocLat, marker.lastLocLng);
 					//console.log(latLng);	//DEBUG
-					var content = accidentMarker('red');
+					var content = accidentMarker('red', 'person_crop');
 					//console.log(content);	//DEBUG
  					var mapMarker = new RichMarker({
 						position: latLng,

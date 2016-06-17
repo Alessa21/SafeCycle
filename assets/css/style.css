@@ -81,10 +81,24 @@ div#map-canvas, div#map-canvas-smallscreen {
 .marker-div{
 	height: 75px;
 	width: 43px;
-	border: 1px solid black;
+	border: 1px solid black; /*DEBUG*/
+	position: relative;
 }
 
 .marker-div img{
+	max-width: 100%;
+}
+
+.icon-div{
+	/*border: 1px solid black; /*DEBUG*/
+	height: 30%;
+	width: 50%;
+	position: absolute;
+	top: 16%;
+	left: 25%;
+}
+
+.icon-div img{
 	max-width: 100%;
 }
 
