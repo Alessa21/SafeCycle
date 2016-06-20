@@ -47,12 +47,6 @@ var map = (function(){
 			// });
 		}
 			
-		// Fill in template with marker-specific info and return content
-		function accidentMarker(color, type){
-			var content = "<div class='marker-div'><img src='assets/images/sc-" + color +".png' /><div class='icon-div'><img src='assets/images/" + type + ".png' /></div></div>";
-			return content;
-		}
-			
 		// Read marker details from DB and populate map
 		function populateMarkers(){
 			var markers = new Firebase("https://glaring-inferno-4148.firebaseio.com/markers");
@@ -62,7 +56,7 @@ var map = (function(){
 					//console.log(marker); 	//DEBUG
 					var latLng = new google.maps.LatLng(marker.lastLocLat, marker.lastLocLng);
 					//console.log(latLng);	//DEBUG
-					var content = accidentMarker('red', 'person_crop');
+					var content = accidentMarker('red', 'car');
 					//console.log(content);	//DEBUG
  					var mapMarker = new RichMarker({
 						position: latLng,
@@ -83,17 +77,36 @@ var map = (function(){
 	// Wait until page has finished loading before function triggers
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
+	
+			// Fill in template with marker-specific info and return content
+		function accidentMarker(color, type){
+			var iconSources = {
+				car: 'car_crop',
+				person: 'person_crop',
+				bike: 'bike_crop',
+				motorbike: 'motorbike_crop',
+				bus: 'bus_crop',
+				tram: 'tram_crop'
+			};
+			var icon = iconSources[type];
+			var content = "<div class='marker-div'><img src='assets/images/sc-" + color +".png' /><div class='icon-div'><img src='assets/images/" + icon + ".png' /></div></div>";
+			return content;
+		}
+	
 	//add marker to map on click
-	var addMarkerOnClick = function(){
+	var addMarkerOnClick = function(type){
 		var selectedLoc = {};
 		selectedLoc.lat = map.getCenter().lat();
 		selectedLoc.lng = map.getCenter().lng();
 		console.log(selectedLoc);	//DEBUG
 
-		var marker = new google.maps.Marker({
-		position: selectedLoc,
-		map: map,
-		size: new google.maps.Size(200, 320)
+		var latLng = new google.maps.LatLng(selectedLoc.lat, selectedLoc.lng);
+		var content = accidentMarker('red', type);
+		var mapMarker = new RichMarker({
+			position: latLng,
+			map: map,
+			shadow: 'none',
+			content: content
 		});
 		//console.log(marker);	//DEBUG
 		logMarker(selectedLoc);
@@ -110,5 +123,7 @@ var map = (function(){
 	}	
 	
 	//var testVar = "Can you see me?";
-	return {addMarker: addMarkerOnClick};
+	return {addMarker: addMarkerOnClick,
+			accidentMarker: accidentMarker
+			};
 }());

@@ -33,7 +33,8 @@ var controls = (function($){
 	var items = document.getElementsByClassName('cp-item');
 	for (var i=0;i<items.length;i++){
 		items[i].addEventListener("click", function(){
-			map.addMarker();
+			//console.log(this.id);		//DEBUG
+			map.addMarker(this.id);
 		});
 	}
 
