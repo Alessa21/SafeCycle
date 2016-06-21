@@ -5,6 +5,9 @@ var map = (function(){
 	var map;
 	//db.set({test: 'test'});	//DEBUG	
 	
+	// Array of marker references - needed for updating without refresh
+	var markerList = [];
+	
 	function initialize () {
 		var lat;
 		var lng;
@@ -56,7 +59,7 @@ var map = (function(){
 					//console.log(marker); 	//DEBUG
 					var latLng = new google.maps.LatLng(marker.lastLocLat, marker.lastLocLng);
 					//console.log(latLng);	//DEBUG
-					var content = accidentMarker('red', 'car');
+					var content = accidentMarker('red', marker.type);
 					//console.log(content);	//DEBUG
  					var mapMarker = new RichMarker({
 						position: latLng,
@@ -64,6 +67,7 @@ var map = (function(){
 						shadow: 'none',
 						content: content
 					});
+					markerList.push(mapMarker);
 				});
 			});
 		}
@@ -78,7 +82,7 @@ var map = (function(){
 	google.maps.event.addDomListener(window, 'load', initialize);
 	
 	
-			// Fill in template with marker-specific info and return content
+		// Fill in template with marker-specific info and return content
 		function accidentMarker(color, type){
 			var iconSources = {
 				car: 'car_crop',
@@ -108,22 +112,25 @@ var map = (function(){
 			shadow: 'none',
 			content: content
 		});
+		markerList.push(mapMarker);
 		//console.log(marker);	//DEBUG
-		logMarker(selectedLoc);
+		logMarker(selectedLoc, type);
 	}
 	
 	//log marker details to DB
-	function logMarker(loc){
+	function logMarker(loc, type){
 		db.child('markers').push({
 			marker:{
 				lastLocLat: loc.lat, 
-				lastLocLng: loc.lng
+				lastLocLng: loc.lng,
+				type: type
 				}
 			});
 	}	
 	
 	//var testVar = "Can you see me?";
 	return {addMarker: addMarkerOnClick,
-			accidentMarker: accidentMarker
+			accidentMarker: accidentMarker,
+			markers: markerList
 			};
 }());

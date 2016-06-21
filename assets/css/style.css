@@ -81,7 +81,7 @@ div#map-canvas, div#map-canvas-smallscreen {
 .marker-div{
 	height: 75px;
 	width: 43px;
-	border: 1px solid black; /*DEBUG*/
+	/*border: 1px solid black; /*DEBUG*/
 	position: relative;
 }
 
