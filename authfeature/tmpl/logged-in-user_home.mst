@@ -1,0 +1,3 @@
+Logged-in: Hello {{ email }}!
+<br>
+<a href="#" onclick="signout();"> Log out</a>

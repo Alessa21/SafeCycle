@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Auth Test</title>
+		
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+		
+		<!-- Custom scripts -->
+		<script type="text/javascript" src="js/tmpl_loader.js"></script>
+		<script type="text/javascript" src="js/auth_access.js"></script>
+	</head>
+
+	<body></body>
+	
+	<!-- Firebase js (Database, Auth, Storage) -->
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>
+	<!-- <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-storage.js"></script> -->
+	<!-- Mustache js (html templates) -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
+	
+	<script>
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyBRZJ8yOH3m3ZBGeSnhdE7xxf1zmwWHr3g",
+			authDomain: "peak-catbird-113121.firebaseapp.com",
+			databaseURL: "https://peak-catbird-113121.firebaseio.com",
+			storageBucket: "peak-catbird-113121.appspot.com",
+		};
+		firebase.initializeApp(config);
+		
+		// Set observer on authentication state
+		firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+			// User is signed in, 'user' is an instance of firebase.User and contains user details
+			var email = user.email;
+			loadTmpl_LoggedInUser_Home({email: email})
+			
+		  } else {
+			// No user is signed in.
+			loadTmpl_SignIn();
+		  }
+		});
+	</script>
+</html>
