@@ -27,8 +27,8 @@ var map = (function(){
 			lng = position.coords.longitude;
 			//alert (lat +' , '+ lng);			//DEBUG
 			var center = new google.maps.LatLng(lat,lng);
-			// specify location where map will be displayed
-			var mapCanvas = document.getElementById("map-canvas-smallscreen");
+			// Collect all output nodes - one for large-screen, one for small-screen
+			var mapCanvas = document.getElementsByClassName("map-canvas");
 			//alert (mapCanvas.length);			//DEBUG
 			// Set map center and starting zoom level
 			var mapOptions = {
@@ -37,9 +37,13 @@ var map = (function(){
 				disableDefaultUI: true
 				};
 				
-			map = new google.maps.Map(mapCanvas,mapOptions);
-			populateMarkers();
-
+			for (i=0;i<mapCanvas.length;i++) {
+				// Create new map
+				map = new google.maps.Map(mapCanvas[i],mapOptions);
+				populateMarkers();
+				//alert (i);					//DEBUG
+				}
+				
 			//DEBUG - function should fire on tap of menu item rather than tapping on map
 			// map.addListener("click", function(e){
 				// addMarkerOnClick();
@@ -57,7 +61,17 @@ var map = (function(){
 					//console.log(latLng);	//DEBUG
 					var content = accidentMarker('red', marker.type);
 					//console.log(content);	//DEBUG
- 					placeMarker(content, latLng);
+ 					var mapMarker = new RichMarker({
+						position: latLng,
+						map: map,
+						shadow: 'none',
+						content: content,
+						draggable: true
+					});
+					mapMarker.addListener('dragend', function(){
+						updateOnDrag(this);
+					});
+					markerList.push(mapMarker);
 				});
 			});
 		}
@@ -93,18 +107,8 @@ var map = (function(){
 	}
 	
 	// add marker to map - split into function to avoid repeating code between initial map load and adding marker on click
-	var placeMarker = function(content, latLng){
-		var mapMarker = new RichMarker({
-						position: latLng,
-						map: map,
-						shadow: 'none',
-						content: content,
-						draggable: true
-		});
-		mapMarker.addListener('dragend', function(){
-			updateOnDrag(this);		
-		});
-		markerList.push(mapMarker);
+	var placeMarker = function(){
+		
 	}
 	
 	//add marker to map on click
@@ -116,8 +120,16 @@ var map = (function(){
 
 		var latLng = new google.maps.LatLng(selectedLoc.lat, selectedLoc.lng);
 		var content = accidentMarker('red', type);
-		placeMarker(content, latLng);
+		var mapMarker = new RichMarker({
+			position: latLng,
+			map: map,
+			shadow: 'none',
+			content: content
+		});
+		markerList.push(mapMarker);
+		//console.log(marker);	//DEBUG
 		logMarker(selectedLoc, type);
+		
 	}
 	
 	//log marker details to DB
