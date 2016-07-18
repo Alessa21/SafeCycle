@@ -1,12 +1,70 @@
 <style>
 	#sign-in-container, #register-container{
+		width: 100%;
+		min-height: 100%;
+		background-color: rgba(0,0,0,0.4);
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: none;
+	    flex-direction: column;
+    	align-items: center;
+	}
+	.overlay-close-area, .overlay-content{
+		max-width: 90%;
+	} 
+	.overlay-close-area{
+		min-width: 270px;
+		margin-top: 100px;
+		text-align: right;
+		color: white;
+		cursor: pointer;
+		font-size: 24px;
+	}
+	.overlay-content{
+		min-width: 250px;
 		background-color: white;
 		border-radius: 5px;
-		position: absolute;
-		right: 10px;
-		top: 60px;
 		padding: 10px;
-		display: none;
+	}
+	.overlay-content input{
+		width: 100%;
+		min-height: 40px;
+		padding: 0;
+		box-sizing: border-box;
+		border: 1px solid rgb(192,192,192);
+		border-radius: 3px;
+		margin-bottom: 20px;
+	}
+	.overlay-content input[type=submit]{
+		margin-bottom: 0px;
+		font-size: 13px;
+		color: white;
+		background: tomato;
+		border-color: tomato;
+	}
+	*::-webkit-input-placeholder {
+    	color: rgb(205,205,205);
+    	padding-left: 5px;
+    	font-style: italic;
+	}
+	*:-moz-placeholder {
+	    /* FF 4-18 */
+    	color: rgb(205,205,205);
+    	padding-left: 5px;
+    	font-style: italic;
+	}
+	*::-moz-placeholder {
+	    /* FF 19+ */
+    	color: rgb(205,205,205);
+    	padding-left: 5px;
+    	font-style: italic;
+	}
+	*:-ms-input-placeholder {
+	    /* IE 10+ */
+    	color: rgb(205,205,205);
+    	padding-left: 5px;
+    	font-style: italic;
 	}
 	nav{
 		position: absolute;
@@ -36,28 +94,46 @@
 	<span class="nav-btn"><a href="#" onclick="loadTmpl_RegisterNewUser();">Register</a></span>
 </nav>
 
-<div id="register-container">
-	<h1>Register as a new user!</h1>
-	<form id="register-form" action="/" method="post">
-		<label>Email</label>
-		<input id="email" type="email" name="email" required />
-		<label>Password</label>
-		<input id="password" type="password" name="password" required />
-		<input type="submit" value="Register" />
-	</form>
-	<p id="errorMsgContainer" ></p>
+
+<div id="register-container" >
+	<div class="overlay-close-area" onclick="close_overlay();">
+		<i class="material-icons">close</i>
+	</div>
+	<div class="overlay-content">
+		<form id="register-form" action="/" method="post">
+			<label>Email</label>
+			<br>
+			<input id="email" type="email" name="email" required placeholder="Type your email" />
+			<br>
+			<label>Password</label>
+			<br>
+			<input id="password" type="password" name="password" required placeholder="Type a password" />
+			<br>
+			<input type="submit" value="Register" />
+		</form>
+		<p id="errorMsgContainer" ></p>
+	</div>
 </div>
 
+
 <div id="sign-in-container">
-	<h1>Sign in</h1>
-	<form id="sign-in-form" action="/" method="post">
-		<label>Email</label>
-		<input id="email" type="email" name="email" required />
-		<label>Password</label>
-		<input id="password" type="password" name="password" required />
-		<input type="submit" value="Sign in" />
-	</form>
-	<p id="errorMsgContainer" ></p>
+	<div class="overlay-close-area" onclick="close_overlay();">
+		<i class="material-icons">close</i>
+	</div>
+	<div class="overlay-content">
+		<form id="sign-in-form" action="/" method="post">
+			<label>Email</label>
+			<br>
+			<input id="email" type="email" name="email" required placeholder="Type your email" />
+			<br>
+			<label>Password</label>
+			<br>
+			<input id="password" type="password" name="password" required placeholder="Type your password" />
+			<br>
+			<input type="submit" value="Sign in" />
+		</form>
+		<p id="errorMsgContainer" ></p>
+	</div>
 </div>
 
 <script>
@@ -74,4 +150,9 @@
 
 		attemptSignIn($('#email').val(), $('#password').val());
 		});
+
+	function close_overlay(){
+		$('#register-container').css("display", "none");
+		$('#sign-in-container').css("display", "none");
+	};
 </script>

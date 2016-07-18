@@ -12,12 +12,12 @@ function loadTmpl_LoggedInUser_Home(values){
 
 function loadTmpl_SignIn(){
 	$('#register-container').css("display", "none");
-	$('#sign-in-container').css("display", "block");
+	$('#sign-in-container').css("display", "flex");
 }
 
 function loadTmpl_RegisterNewUser(){
 	$('#sign-in-container').css("display", "none");
-	$('#register-container').css("display", "block");
+	$('#register-container').css("display", "flex");
 }
 
 function loadTmpl_AnonNav(){
