@@ -1,101 +1,26 @@
-<style>
-    #sign-in-container, #register-container{
-        width: 100%;
-        min-height: 100%;
-        background-color: rgba(0,0,0,0.4);
-        position: absolute;
-        left: 0;
-        top: 0;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-    }
-    .overlay-close-area, .overlay-content{
-        max-width: 90%;
-    } 
-    .overlay-close-area{
-        min-width: 270px;
-        margin-top: 100px;
-        text-align: right;
-        color: white;
-        cursor: pointer;
-        font-size: 24px;
-    }
-    .overlay-content{
-        min-width: 250px;
-        background-color: white;
-        border-radius: 5px;
-        padding: 10px;
-    }
-    .overlay-content input{
-        width: 100%;
-        min-height: 40px;
-        padding: 0;
-        box-sizing: border-box;
-        border: 1px solid rgb(192,192,192);
-        border-radius: 3px;
-        margin-bottom: 20px;
-    }
-    .overlay-content input[type=submit]{
-        margin-bottom: 0px;
-        font-size: 13px;
-        color: white;
-        background: tomato;
-        border-color: tomato;
-    }
-    *::-webkit-input-placeholder {
-        color: rgb(205,205,205);
-        padding-left: 5px;
-        font-style: italic;
-    }
-    *:-moz-placeholder {
-        /* FF 4-18 */
-        color: rgb(205,205,205);
-        padding-left: 5px;
-        font-style: italic;
-    }
-    *::-moz-placeholder {
-        /* FF 19+ */
-        color: rgb(205,205,205);
-        padding-left: 5px;
-        font-style: italic;
-    }
-    *:-ms-input-placeholder {
-        /* IE 10+ */
-        color: rgb(205,205,205);
-        padding-left: 5px;
-        font-style: italic;
-    }
-</style>
-
-   <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" onclick="loadTmpl_SignIn();">Sign In</a>
-                    </li>
-                    <li>
-                        <a href="#" onclick="loadTmpl_RegisterNewUser();">Register</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<!-- Navigation -->
+<nav class="navbar  navbar-fixed-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="#" onclick="loadTmpl_SignIn();" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Sign In</a></li>
+                <li><a href="#" onclick="loadTmpl_RegisterNewUser();" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Register</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
 
 
 <div id="register-container" >
