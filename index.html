@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Safe Cycle</title>
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/tmpl-style_anon-nav.css">
+
+</head>
+
+<body>
+
+
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="js/tmpl_loader.js"></script>
+    <script type="text/javascript" src="js/auth_access.js"></script>
+ 
+    <!-- jQuery -->
+    <script src="lib/jquery.js"></script>
+
+    <!-- Google Maps Javascript API -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa9wrFQDtahsK5hqvRrivBxA52ZFsqWew"></script>
+
+    <!-- Rich Marker JS -->
+    <script type="text/javascript" src="lib/richmarker.js"></script>
+
+    <!-- Font-Awesome Icons CDN -->
+    <script src="https://use.fontawesome.com/d7021c1aba.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="lib/bootstrap.min.js"></script>
+
+    <!-- Firebase js (Database, Auth, Storage) -->
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-app.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-auth.js"></script>
+    <!--<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.0.5/firebase-database.js"></script>-->
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.0.5/firebase-storage.js"></script> -->
+    <!-- Firebase CDN -->
+    <script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+    <!-- Mustache js (html templates) -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.0/mustache.min.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBRZJ8yOH3m3ZBGeSnhdE7xxf1zmwWHr3g",
+            authDomain: "peak-catbird-113121.firebaseapp.com",
+            databaseURL: "https://peak-catbird-113121.firebaseio.com",
+            storageBucket: "peak-catbird-113121.appspot.com",
+        };
+        firebase.initializeApp(config);
+        
+        // Set observer on authentication state
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            // User is signed in, 'user' is an instance of firebase.User and contains user details
+            var email = user.email;
+            loadTmpl_LoggedInUser_Home({email: email})
+            
+          } else {
+            // No user is signed in.
+            loadTmpl_AnonNav();
+          }
+        });
+    </script>
+
+</body>
+
+</html>

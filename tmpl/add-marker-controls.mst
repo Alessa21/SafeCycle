@@ -1,0 +1,12 @@
+<div id = "control-panel">
+	<img id="cp-icon" src="img/location_crop.png" />
+	<div class = "cp-item" id="person"><img src="img/person_crop.png" /> PERSON </div>
+	<div class = "cp-item" id="bike"><img src="img/bike_crop.png" /> BIKE </div>
+	<div class = "cp-item" id="car"><img src="img/car_crop.png" /> CAR </div>
+	<div class = "cp-item" id="motorbike"><img src="img/motorbike_crop.png" /> MOTORBIKE </div>
+	<div class = "cp-item" id="bus"><img src="img/bus_crop.png" /> BUS </div>
+	<div class = "cp-item" id="tram"><img src="img/tram_crop.png" /> TRAM </div>
+</div>
+
+<!-- Custom JS for controls -->
+<script type="text/javascript" src ="js/tmpl-script_add-marker-controls.js" ></script>

@@ -1,0 +1,7 @@
+<div class ="map-canvas" id="map-canvas-smallscreen">Map should appear here</div>
+
+<!-- Crosshairs -->
+<i class="fa fa-crosshairs" aria-hidden="true"></i>
+
+<!-- Custom JS for controls -->
+<script type="text/javascript" src ="js/tmpl-script_map.js" ></script>
