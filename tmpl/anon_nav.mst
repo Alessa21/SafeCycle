@@ -1,26 +1,15 @@
+<style>
+    .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+</style>
 <!-- Navigation -->
-<nav class="navbar  navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a href="#" onclick="loadTmpl_SignIn();" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Sign In</a></li>
-                <li><a href="#" onclick="loadTmpl_RegisterNewUser();" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Register</a></li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+
+
+
+    
 
 
 <div id="register-container" >
@@ -44,25 +33,7 @@
 </div>
 
 
-<div id="sign-in-container">
-    <div class="overlay-close-area" onclick="close_overlay();">
-        <i class="material-icons">close</i>
-    </div>
-    <div class="overlay-content">
-        <form id="sign-in-form" action="/" method="post">
-            <label>Email</label>
-            <br>
-            <input id="email" type="email" name="email" required placeholder="Type your email" />
-            <br>
-            <label>Password</label>
-            <br>
-            <input id="password" type="password" name="password" required placeholder="Type your password" />
-            <br>
-            <input type="submit" value="Sign in" />
-        </form>
-        <p id="errorMsgContainer" ></p>
-    </div>
-</div>
+
 
 
 
