@@ -1,0 +1,234 @@
+html, body {
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	max-height: 100%;
+	margin: 0%;
+	-webkit-text-size-adjust: none;
+	margin:0;
+	}
+	
+div#top-nav{
+	height: 15%;
+	width: 100%;
+	/*border: 1px solid black; /*DEBUG*/
+	position: relative;
+	background-color: #b4e4cd;
+	}
+	
+div#top-nav ul {
+	width: 99%;
+	/*border: 1px solid black; /*DEBUG*/
+	position: absolute;
+	bottom: 1%;
+	text-align: center;
+	padding: 0px;
+	margin-bottom: 4%;
+	}
+	
+div#top-nav ul li {
+	list-style-type: none;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 5.25vw;
+	width: 48%;
+	/*border: 1px solid black; /*DEBUG*/
+	padding: 0px 0px;
+	position: relative;
+	}
+	
+/*--- Arrow after top menu items ---*/
+div#top-nav ul li:nth-of-type(2)::after{
+	content : " ";
+	width: 0;
+	height: 0;
+	border-left: 40px solid transparent;
+	border-right: 40px solid transparent;
+	border-top: 10px solid #fff;
+	position:absolute;
+	bottom:-11px;
+	left: 25%;
+	}
+/* --- end arrow ---*/
+
+div#map-canvas, div#map-canvas-smallscreen {
+	height: 85%;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	border-bottom: 1px solid black;
+	color: black;
+	position: relative;
+	z-index: 1;
+	}
+	
+#map_canvas img {
+    max-width: none;
+	border: 1px solid black;
+}
+	
+/*--- Map crosshairs ---*/
+.fa-crosshairs{
+	position: absolute;
+	bottom: 41%;	/* Positioned absolutely - map viewport takes up 80% of screen height. Positioned here to be vertically centred in map viewport */
+	left: 49%;
+	opacity: 0.5;
+	z-index: 99;
+	color: red;
+	font-size: 2em;
+	}
+	
+/* -- Marker content --*/
+
+.marker-div{
+	height: 75px;
+	width: 43px;
+	/*border: 1px solid black; /*DEBUG*/
+	position: relative;
+}
+
+.marker-div img{
+	max-width: 100%;
+}
+
+.icon-div{
+	/*border: 1px solid black; /*DEBUG*/
+	height: 30%;
+	width: 50%;
+	position: absolute;
+	top: 16%;
+	left: 25%;
+}
+
+.icon-div img{
+	max-width: 100%;
+}
+
+/*---------------------*/
+	
+/*--- Control panel CSS ---*/	
+	
+div#control-panel{
+	position: absolute;
+	bottom: 15px;
+	right: 0px;
+	height: 50px;
+	width: 50px;
+	/*background-color: blue;	/*DEBUG */
+	z-index: 2;
+}
+
+#cp-icon{
+	max-height: 50px;
+	max-width: 50px;
+	/*border: 1px solid black; /*DEBUG*/
+}
+
+.cp-item{
+	width: 75%;
+	height: 75%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*background-color: red;	/*DEBUG*/
+	font-size: 2.65vw;
+	opacity: 0.0;
+	transition: transform 0.25s, opacity 0.25s, visibility 0.25s;
+	visibility: hidden; /* Stops menu items being clicked on when in pre-flyout state*/
+	color: transparent;
+}
+
+.cp-item img{
+	max-width: 100%;
+}
+
+.cp-item-clicked{
+	opacity: 0.9;
+	visibility: visible;
+}
+
+.cp-item-clicked:nth-of-type(1){
+	-ms-transform: rotate(-5deg) translate(-400%, 0px);
+	-webkit-transform: rotate(-5deg) translate(-400%, 0px);
+	transform: rotate(-5deg) translate(-400%, 0px);
+}
+
+.cp-item-clicked:nth-of-type(2){
+	-ms-transform: rotate(14deg) translate(-400%, 0px);
+	-webkit-transform: rotate(14deg) translate(-400%, 0px);
+	transform: rotate(14deg) translate(-400%, 0px);
+}
+
+.cp-item-clicked:nth-of-type(2) img{
+	-ms-transform: rotate(-14deg);
+	-webkit-transform: rotate(-14deg);
+	transform: rotate(-14deg);
+}
+
+.cp-item-clicked:nth-of-type(3){
+	-ms-transform: rotate(33deg) translate(-400%, 0px);
+	-webkit-transform: rotate(33deg) translate(-400%, 0px);
+	transform: rotate(33deg) translate(-400%, 0px);
+}
+
+.cp-item-clicked:nth-of-type(3) img{
+	-ms-transform: rotate(-33deg);
+	-webkit-transform: rotate(-33deg);
+	transform: rotate(-33deg);
+}
+
+.cp-item-clicked:nth-of-type(4){
+	-ms-transform: rotate(52deg) translate(-400%, 0px);
+	-webkit-transform: rotate(52deg) translate(-400%, 0px);
+	transform: rotate(52deg) translate(-400%, 0px);
+}
+
+.cp-item-clicked:nth-of-type(4) img{
+	-ms-transform: rotate(-52deg);
+	-webkit-transform: rotate(-52deg);
+	transform: rotate(-52deg);
+}
+
+.cp-item-clicked:nth-of-type(5){
+	-ms-transform: rotate(71deg) translate(-400%, 0px);
+	-webkit-transform: rotate(71deg) translate(-400%, 0px);
+	transform: rotate(71deg) translate(-400%, 0px);	
+}
+
+.cp-item-clicked:nth-of-type(5) img{
+	-ms-transform: rotate(-71deg);
+	-webkit-transform: rotate(-71deg);
+	transform: rotate(-71deg);
+}
+
+.cp-item-clicked:nth-of-type(6){
+	-ms-transform: rotate(90deg) translate(-400%, 0px);
+	-webkit-transform: rotate(90deg) translate(-400%, 0px);
+	transform: rotate(90deg) translate(-400%, 0px);
+}
+
+.cp-item-clicked:nth-of-type(6) img{
+	-ms-transform: rotate(-90deg);
+	-webkit-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+
+/*--- end Control panel CSS ---*/	
+
+
+
+/*	
+@media screen and (max-width: 768px) {
+	
+	div#gmap-smallscreen, div#map-canvas-smallscreen {
+		display: block;
+		max-width:100%;
+		height: 800px;
+		padding: 1%;
+		border: 1px solid black;
+		display: none;
+		}
+		
+
+}*/
+	

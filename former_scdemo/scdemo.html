@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SafeCycle</title>
+		<meta name="viewport" content="width=device-width">
+		<!-- jQuery CDN -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+		<!-- Google Maps Javascript API -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa9wrFQDtahsK5hqvRrivBxA52ZFsqWew"></script>
+		<!-- Rich Marker JS -->
+		<script type="text/javascript" src="assets/scripts/richmarker.js"></script>
+		<!-- Firebase CDN -->
+		<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+		<!-- Custom JS for embedded map -->
+		<script type="text/javascript" src ="assets/scripts/scmap.js" defer></script>
+		<!-- Custom JS for controls -->
+		<script type="text/javascript" src ="assets/scripts/controls.js" defer></script>
+		<!-- Page CSS -->
+		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+		<!-- Font-Awesome Icons CDN -->
+		<script src="https://use.fontawesome.com/d7021c1aba.js"></script>
+	</head>
+	
+	<body>
+		<div id = "top-nav">
+			<ul>
+				<li>View my route</li>
+				<li>Leave a marker</li>
+			</ul>
+		</div>
+	
+		<div class ="map-canvas" id="map-canvas-smallscreen">
+			Map should appear here
+			
+		</div>
+		
+		<!-- Crosshairs -->
+		<i class="fa fa-crosshairs" aria-hidden="true"></i>
+
+		<div id = "control-panel">
+			<img id="cp-icon" src="assets/images/location_crop.png" />
+			<div class = "cp-item" id="person"><img src="assets/images/person_crop.png" /> PERSON </div>
+			<div class = "cp-item" id="bike"><img src="assets/images/bike_crop.png" /> BIKE </div>
+			<div class = "cp-item" id="car"><img src="assets/images/car_crop.png" /> CAR </div>
+			<div class = "cp-item" id="motorbike"><img src="assets/images/motorbike_crop.png" /> MOTORBIKE </div>
+			<div class = "cp-item" id="bus"><img src="assets/images/bus_crop.png" /> BUS </div>
+			<div class = "cp-item" id="tram"><img src="assets/images/tram_crop.png" /> TRAM </div>
+		</div>
+	
+	</body>
+</html>
