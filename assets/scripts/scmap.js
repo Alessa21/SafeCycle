@@ -1,4 +1,4 @@
-var map = (function(){
+var map = (function($){
 	// Create reference to Firebase DB
 	var db = new Firebase("https://glaring-inferno-4148.firebaseio.com/");
 	// Create map variable at highest level of component
@@ -12,6 +12,11 @@ var map = (function(){
 		var lat;
 		var lng;
 		//$('body').load("assets/templates/marker_template.html");
+		
+		// Prevent screen from being dragged down on iOS device
+		document.body.addEventListener('touchmove', function (ev) { 
+			ev.preventDefault();
+		});
 		
 		// Get user's permission to use location
 		if (navigator.geolocation) {
@@ -34,7 +39,8 @@ var map = (function(){
 			var mapOptions = {
 				center: center,
 				zoom: 17,
-				disableDefaultUI: true
+				disableDefaultUI: true,
+				disableDoubleClickZoom: true
 				};
 				
 			map = new google.maps.Map(mapCanvas,mapOptions);
@@ -52,10 +58,10 @@ var map = (function(){
 			markers.once("value", function(snapshot) {
 				snapshot.forEach(function(childSnapshot) {
 					var marker = childSnapshot.val().marker;
-					//console.log(marker); 	//DEBUG
+					var markerID = childSnapshot.key();
 					var latLng = new google.maps.LatLng(marker.lastLocLat, marker.lastLocLng);
 					//console.log(latLng);	//DEBUG
-					var content = accidentMarker('red', marker.type);
+					var content = accidentMarker('red', marker.type, markerID);
 					//console.log(content);	//DEBUG
  					placeMarker(content, latLng);
 				});
@@ -73,7 +79,8 @@ var map = (function(){
 	
 	
 	// Fill in template with marker-specific info and return content
-	var accidentMarker = function(color, type){
+	var accidentMarker = function(color, type, id){
+		id = id || ' ';
 		var iconSources = {
 			car: 'car_crop',
 			person: 'person_crop',
@@ -83,7 +90,7 @@ var map = (function(){
 			tram: 'tram_crop'
 		};
 		var icon = iconSources[type];
-		var content = "<div onclick = 'console.log(this)' class='marker-div'><img src='assets/images/sc-" + color +".png' /><div class='icon-div'><img src='assets/images/" + icon + ".png' /></div></div>";
+		var content = "<div class='marker-div' id ='" + id + "'><img src='assets/images/sc-" + color +".png' /><div class='icon-div'><img src='assets/images/" + icon + ".png' /></div></div>";
 		return content;
 	}
 	
@@ -101,8 +108,17 @@ var map = (function(){
 						content: content,
 						draggable: true
 		});
-		mapMarker.addListener('dragend', function(){
+		google.maps.event.addListener(mapMarker, 'dragend', function(ev) {
+			console.log(ev);
 			updateOnDrag(this);		
+		});
+		google.maps.event.addListener(mapMarker, 'click', function(ev) {
+			// Hacky solution to click firing twice in Google Maps API v3: logic only fires on trusted click
+			if(ev.isTrusted){
+				ev.preventDefault();
+				ev.stopPropagation();
+				console.log(this);	
+			}
 		});
 		markerList.push(mapMarker);
 	}
@@ -115,12 +131,14 @@ var map = (function(){
 		console.log(selectedLoc);	//DEBUG
 
 		var latLng = new google.maps.LatLng(selectedLoc.lat, selectedLoc.lng);
-		var content = accidentMarker('red', type);
+		// Log marker and store commit key to use in GUI
+		var markerId = logMarker(selectedLoc, type);
+		//console.log(markerId);	//DEBUG
+		var content = accidentMarker('red', type, markerId);
 		placeMarker(content, latLng);
-		logMarker(selectedLoc, type);
 	}
 	
-	//log marker details to DB
+	//log marker details to DB, returns key used in commit
 	function logMarker(loc, type){
 		var commit = db.child('markers').push({
 			marker:{
@@ -129,7 +147,7 @@ var map = (function(){
 				type: type
 				}
 			});
-		console.log(commit.key())
+		return(commit.key());
 	}	
 	
 	//var testVar = "Can you see me?";
@@ -137,5 +155,5 @@ var map = (function(){
 			accidentMarker: accidentMarker,
 			markers: markerList
 			};
-}());
+}(jQuery));
 
